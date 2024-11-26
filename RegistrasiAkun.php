@@ -9,7 +9,7 @@ $dbname = "nama_database";
 
 $koneksi = mysqli_connect($servername, $usernameDB, $passwordDB, $dbname);
 
-// Cek koneksi
+
 if (!$koneksi) {
     die("Connection failed: " . mysqli_connect_error());
 }
@@ -52,16 +52,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'alamat_rumah' => $alamat_rumah,
         ];
 
-        echo "<h2>Registrasi Berhasil!</h2>";
-        echo "Data Anda telah disimpan. <br>";
-        echo "Nama: $nama <br /> Email: $email <br /> Nomor Telepon: $nomor_telepon <br /> Alamat Rumah: $alamat_rumah <br />"; 
+       header("Location: registrasi_hasil.php");
+        exit();
     } else {
-        die("Gagal menyimpan data ke database: " . mysqli_error($koneksi));
+         header("Location: registrasi_hasil.php");
+        exit();
     }
 
     
     mysqli_close($koneksi);
-} else {
-    die("Maaf, anda harus mengakses halaman ini dari form pendaftaran.");
-}
+} else { 
 ?>
